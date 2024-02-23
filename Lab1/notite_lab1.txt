@@ -1,0 +1,177 @@
+print("Mesaj",20) //mesaj si valoare
+PyCharm
+i=0
+while i<=10: //conditii clasice, cele logice
+    i=i+1
+    print("mesaj") //se printeaza mesajul de 10 ori
+
+# face comentarii 
+''' 
+
+''' -> mai multe linii comentate
+
+tipul complex
+a=1.2
+print(type(a)) //ca sa vad ce tip are are tipul float in cazul asta
+
+a=1
+print(type(a)) //tipul int
+
+numere complexe
+z=2+2j
+print(type(x)) //zice ca e complex
+
+print(z+z) // rezultatul e 4+4j //aduna doua numere complexe
+
+
+import cmath -> va folosi numere complexe
+z=2+2j sau z=complex(2,2)
+print("partea reala",z.real)
+print("partea imaginara",z.imag)
+
+print("conjugat",conjugate(z)) //nu merge cmath.conjugate //sau merge idk
+
+//"hai sa facem o functie care sa faca ceva"
+functie care sa inmulteasca doua numere complexe de exemplu
+print(z*z)//da -8j si e corect cand z = 2 - 2j
+(2^2-2^2-4*2j) = -8j
+
+def suma_complex(z,t): //asta cica e deja implementata
+    return(z+t)
+
+print(suma_complex(z,z))
+
+script adica o serie de instructiuni
+//ex1
+//range de la cat la cat si pot sa ii dau si un pas
+for i in range(4):  //i ia valori de la 0 la 3
+    print(i)
+
+for i in range(2,50,2): //de la 2 la  50 cu pasul 2
+    print(i)
+
+//ex1 for i in range(3,50,3):
+        print(i)
+
+//ex2 functie care verifica daca un numar este par sau nu
+def par(n):
+    if n%2==0:
+        return(1)
+    else:
+        return(0)
+
+
+print(par(10))
+print(par(11))
+
+//cum as defini un vector
+//in principal pyhton lucreaza cu liste
+
+x=[1,2,3]
+print(x[1]) -> imi da 2 pentru ca numerotarea incepe de la 0
+print(x[0]) -> imi da 1
+
+//la quantum nu o sa lucram cu dictionare dar cica ne ajuta in anul 3
+//program care inmulteste 2 matrici -> imi trebui numpy ca sa am ceva functie predefinita
+
+lista de liste
+
+//fac suma de matrici
+
+A=[[1,2,3],[3,2,1],[0,0,1]] //o dau in terminal A[0] prima linie
+A[0][0] elementul de pe lin 0 col 0 adica 1
+len(A) imi da 3
+
+rezultat=[[0,0,0],[0,0,0],[0,0,0]]
+def suma(A,B):
+    for i in range(len(A)): -> 0,1,2
+        for j in range((len(B))):
+            rezultat[i][j]=A[i][j]+B[i][j]
+    print(rezultat)
+    return(rezultat)
+print("suma este",suma(A,A))
+
+import numpy as np 
+print(np.add(A,A)) //functie predefinita
+//este si o functie predefinita de inmultire matrici care e mai eficienta decat cea clasica
+//cica noi o sa o imbunatatim si mai mult  -> mai incolo
+
+//a11*b11 + a12*b21 + a13*b31
+
+len(A[0]) -> numarul coloanelor din A adica 3
+A=[[1,2,2],[0,0,1]] len(A)=2
+
+def produs(A,B):
+    for i in range(len(A)): -> 0,1,2
+        for j in range((len(B[0]))): //cu j merg pe coloanele matricii b
+            for k in range(len(B):
+                rezultat[i][j]+=A[i][k]*B[k][j] //trebuie indentat
+    return(rezultat)
+
+print("produsul este",produs(A,A))
+print("produsul este",produs(A,rezultat))
+
+b de 3 1 adica 3 linii 1 coloana
+B=[[1],[1],[1]]
+print("produsul este",produs(A,B)) //matricea rezultat era de 3 pe 3 si a pus doar pe prima componenta rezultatele
+//era ceva in c acolo -> ar trebui sa golesc vectorul c, gen un vector nul 
+
+print(A*A)// nu da bine
+
+print(np.matmul(A,B)) //functie predefinita inmulteste matricile
+print(np.invert(A))  //face inversa
+
+reprezentati un circuit, masurati primul qubit -> primele exercitii din tema 
+if for while algoritm -> ne ducem la partea de quantum -> imi trebuie quiskit
+
+google colab -> lucram in jupyter? sau in IBM quantum experience jupyter
+import numpy as np
+X=[[0,1],[1,0]]
+print(np.matmul(X,X)) 
+//putin mai usor, convinient dar e mai incet(ca viteza de rulare cred)
+
+//in final tema o sa fie un fisier pyhton 
+
+//in google colab
+import qiskit -> nu merge
+
+
+in PyCharm:
+import qiskit
+from qiskit import * -> in functie de ce ai nevoie el o sa importe
+
+circuit = QuantumCircuit(2,2) -> 2 qubiti si 2 qubiti pe care ii retin???
+//ca sa dau exit din terminal trebuie sa scriu exit()
+print(circuit)
+
+circuit.x(0) //pun pe qubitul 0 poarta x -> deseneaza ceva (merge la doamna doar in terminal)
+circuit.x(0)
+python 3 something.py
+
+circuit.measureall() -> masoara tot circuitul
+circuit.draw() <=> print(circuit)
+
+intializarea variabilelleor adica a quibtilor, ei sunt intiial 0 0 
+probabilitatile obtinute sunt aproape de 1/4, nu exact 1/4
+
+--------------------------
+simulator=Aer.get_backend('qasm_simulator')
+2 result=execute(circuit,simulator,shots=8000).result()
+3 counts=result.get_counts()
+4 print(counts)
+5 print("Rezultatul simularii este :", counts)
+6 #{'11': 2000, '10': 2002, '00': 2000, '01': 1998}
+
+shots=8000 execut circuitul de 8000 de ori
+obtine doar |00>
+pentru ca initital qubitii sunt 0 0
+daca pun doar un not pe primul  imi da |10> dar acolo scrie 01 -> citest de la drepta la stanga
+sau can ma uit la circuit de jos in sus
+
+circuit.h(0)
+probabilitati aproape egale de 1/2
+
+pip 3 install numpy -> ca sa intalez numpy
+pot si sa editez in atom si sa rulez in terminal
+
+-----------------------------------------

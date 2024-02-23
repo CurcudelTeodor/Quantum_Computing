@@ -1,0 +1,2 @@
+Teo, aveai dreptate. Amplitudinea aceea era corespunzatoare starii 0^n. 
+Pentru cazul general, amplitudinea starii y va fi cu (-1)^(f(x)+xy)
